@@ -1,7 +1,7 @@
 .user_details {
-    background: #bdc3c7;
-    background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);
-    background: linear-gradient(to right, #2c3e50, #bdc3c7);
+   font-size:1.8em;
+    display:inline-flex;
+    padding: 10px;
 }
 
 .token_btn {

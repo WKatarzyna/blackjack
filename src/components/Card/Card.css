@@ -1,0 +1,32 @@
+.card {
+    /*display: inline-block;*/
+    /*padding: 0px;*/
+}
+
+.card img {
+    /*border: 1px solid black;*/
+    /*border-radius: 10px;*/
+    /*height: 175px;*/
+    /*width: 120px;*/
+}
+
+.card_front {
+
+    height:300px;
+
+}
+
+#dealer_hand ,#player_hand{
+    width:100%;
+    height:300px;
+
+
+}
+#dealer_hand {
+    background-color: dimgrey;
+}
+#player_hand {
+    background-color: green;
+}
+
+

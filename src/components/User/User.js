@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import {UserContext} from "../../UserContext";
 import './User.css';
+import Wrapper from "../Wrapper";
 
 
 import {Redirect} from "react-router-dom";
@@ -22,21 +23,19 @@ function User() {
 
     return (
 
-        <div>
-            <div className={'user_details'}>
-                {user ? <>
-                        <div className={'header_primary'}>Bank:{credit} $</div>
-                        <p>Place your bet</p>
-                        <div> Name: {user}</div>
-                        <div> Bet: {bet}</div>
-                        <div> Score: {score}</div>
-                    </> :
-                    <h1 className={'header_primary'}>No user provided, please return to home and login</h1>
-                }
 
-            </div>
+        <div className={'user_details'}>
+            {user ? <>
+                    <div className={'header_primary'}>Bank:{credit} $</div>
+                    <Wrapper> Player: {user}</Wrapper>
+                    <Wrapper> Bet: {bet}</Wrapper>
+                    <Wrapper> Score: {score}</Wrapper>
+                </> :
+                <h1 className={'header_primary'}>No user provided, please return to home and login</h1>
+            }
 
         </div>
+
 
     )
 }

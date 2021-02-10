@@ -13,19 +13,13 @@
 body {
     font: 62.5%/1.5 "Dancing Script", Lato, Verdana, sans-serif;
     text-align: center;
-    background-image: url('./assets/images/leather.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position:absolute; top:0; bottom:0; right:0; left:0;
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 
 }
-html {
-    height: 100%;
-
+html, body, #root {
+    height: 100%
 }
-/*body {*/
-/*    min-height: 100%;*/
-/*    padding:0;*/
-/*    margin:0;*/
-/*}*/
+

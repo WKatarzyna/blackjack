@@ -5,7 +5,11 @@
     pointer-events: none;
 }
 
+form {
+    margin-top: 50px;
+    margin-bottom: 100px;
 
+}
 
 @keyframes App-logo-spin {
     from {
@@ -20,9 +24,10 @@
     .header_primary {
         font-size: 1.6rem;
     }
+
     .container {
         width: 100%;
-        height:100vh;
+        /*height:100vh;*/
     }
 }
 
@@ -38,35 +43,56 @@
 
     .container {
         width: 670px;
-        height:100vh;
+        /*height:100vh;*/
+    }
+}
+
+@media (min-width: 1281px) {
+    .container {
+        width: 80vw;
+        /*height:100vh;*/
+    }
+
+    .game_cards {
+
+        /*display:grid;*/
+        /*grid-template-columns: 200px 200px 200px 200px;*/
+        /*grid-gap: 50px;*/
+
+
+    }
+
+    .card_front {
+        height: 100%;
     }
 }
 
 .container {
-    height:90vh;
+
     top: 10px;
     margin: 0 auto;
     padding: 0;
     position: relative;
-    background:#438255;
+    background: #438255;
     border-radius: 20px;
-    border:10px solid #353b48;
-    -moz-box-shadow:    inset 0 0 10px #000000;
+    border: 10px solid #353b48;
+    -moz-box-shadow: inset 0 0 10px #000000;
     -webkit-box-shadow: inset 0 0 10px #000000;
-    box-shadow:         inset 0 0 10px #000000;
+    box-shadow: inset 0 0 10px #000000;
 }
+
 nav {
     /*position:absolute;*/
-    background-color:#353b48;
-    width:100%;
+    background-color: #353b48;
+    width: 100%;
 }
 
 ul, li {
     list-style: none;
-    color:white;
-    display:inline;
+    color: white;
+    display: inline;
     font-size: 1.6rem;
-    padding:10px;
+    padding: 10px;
 }
 
 a {
@@ -74,9 +100,14 @@ a {
     text-decoration: none;
 }
 
-a:hover
-{
-    color:#00A0C6;
-    text-decoration:none;
-    cursor:pointer;
+a:hover {
+    color: #00A0C6;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.dealer_cards, .player_cards {
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px;
+    grid-gap: 50px;
 }

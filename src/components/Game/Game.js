@@ -8,10 +8,16 @@ import UserCards from "../Card/userCards"
 function Game() {
 
     const {cards, setCards, bet, setBet, credit, setCredit, dealerCards, setDealerCards, userCards, setUserCards} = useContext(UserContext);
-
     const buttonRef = useRef();
+    console.log(cards.deck)
+    const cardsValue = []
     const [dealerIsActive, setDealerIsActive] = useState(false);
     const [round, setRound] = useState(1);
+
+    if(round === 5 ){
+
+        
+    }
 
     const doubleBet = (e) => {
         document.getElementById('btn_bet').classList.add('btn_big')
@@ -26,6 +32,7 @@ function Game() {
         console.log("in heat")
         setDealerCards(dealerCards => [...dealerCards, ...cards.deck.splice(0, 1)])
         setRound(round + 1)
+        disableButton();
 
     }
     const setStand = () => {
@@ -34,7 +41,6 @@ function Game() {
     const disableButton = () => {
         buttonRef.current.disabled = true;
     }
-
 
     const dealCards = () => {
         setDealerCards(cards.deck.splice(0, 2));
@@ -45,45 +51,43 @@ function Game() {
     return (
         <>
             <User/>
-            Round: {round}
-            Cards: {cards.deck.length}
             <div id={"game_board"}>
-
+                <div id={'game_details'}>Round: {round} Cards: {cards.deck.length}</div>
 
                 {dealerIsActive ? <>
-
-                    <button onClick={setHit}>Hit</button>
-                    <button onClick={setStand}>Stand</button>
+                    <button ref={buttonRef} className={'choose'} onClick={setHit}>Hit</button>
+                    <button ref={buttonRef} className={'choose'} onClick={setStand}>Stand</button>
                     <button ref={buttonRef} id={"btn_bet"} className={'token_btn'} onClick={doubleBet} value={100}>100
                     </button>
-                </> : <button onClick={dealCards}>Deal</button>}
+                </> : <button className={'choose'} onClick={dealCards}>Deal</button>}
             </div>
-            <div className={'card'}>
+            <div className={'game_table'}>
+                <div className={'game_cards'}>
+                    <div className={'dealer_cards'}>
+                        {dealerCards.map((card) => {
+                            return (
+                                <DealerCards
+                                    key={card.code}
+                                    figure={card.code}
+                                    value={card.value}
+                                    front={card.images.svg}
+                                />)
+                        })}
+                    </div>
 
-                {dealerCards.map((card) => {
-                    return (
-
-                        <DealerCards
-                            key={card.code}
-                            value={card.value}
-                            front={card.images.svg}
-                        />
-
-                    )
-                })}
-                {userCards.map((card) => {
-                    return (
-                        <UserCards
-                            key={card.code}
-                            value={card.value}
-                            front={card.images.svg}
-                        />
-                    )
-                })}
-
+                    <div className={'player_cards'}>
+                        {userCards.map((card) => {
+                            return (
+                                <UserCards
+                                    key={card.code}
+                                    figure={card.code}
+                                    value={card.value}
+                                    front={card.images.svg}
+                                />)
+                        })}
+                    </div>
+                </div>
             </div>
-
-
         </>
     );
 }
