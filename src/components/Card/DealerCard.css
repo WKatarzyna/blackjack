@@ -1,0 +1,19 @@
+.card_front {
+     width:100%;
+
+
+ }
+/*.card {*/
+/*    display:inline;*/
+/*    position:relative;*/
+/*}*/
+.card {
+    display:grid;
+    grid-template-columns: 200px 200px;
+    grid-template-rows:  100px;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
