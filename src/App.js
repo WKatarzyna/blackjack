@@ -1,45 +1,69 @@
 import React, {useState, useMemo, useEffect} from "react";
-import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import axios from 'axios';
-// import { createBrowserHistory } from "history"
 import Main from "./pages/Main";
 import Game from "./components/Game/Game"
 import {UserContext} from "./UserContext";
-import Wrapper from "./components/Wrapper";
 import Footer from "./components/Footer";
+import Ranking from "./components/Ranking/userRanking";
 import './App.css'
+import Dexie from 'dexie';
 
 
 function App() {
 
-    const [user, setUser] = useState(null);
+    const [playerName, setPlayerName] = useState(null);
     const [cardDeck, setCardDeck] = useState({deck: []});
     const [cards, setCards] = useState({deck: []});
     const url = 'https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6';
-    const [score, setScore] = useState(0);
+    const [allWins, setAllWins] = useState(0);
+    const [allLooses, setAllLooses] = useState(0);
     const [bet, setBet] = useState(100);
     const [credit, setCredit] = useState(1000);
     const [userList, setList] = useState([]);
     const [userCards, setUserCards] = useState([]);
     const [dealerCards, setDealerCards] = useState([]);
+    const [playersRanking, setPlayersRanking] = useState([]);
+    const [round, setRound] = useState(0);
+    const [database, setDatabase] = useState(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const db = new Dexie("playersRank");
+    db.version(1).stores({
+        players: "++id, name, score,wins, looses, cards"
+
+    });
+    db.open().catch((err) => {
+        console.error(err.stack || err)
+    });
 
     const value = useMemo(
         () => ({
-            user, setUser,
+            playerName, setPlayerName,
             userList, setList,
-            score, setScore,
+            allWins, setAllWins,
+            allLooses, setAllLooses,
             bet, setBet,
             credit, setCredit,
             cardDeck, setCardDeck,
             cards, setCards,
             userCards, setUserCards,
             dealerCards, setDealerCards,
+            playersRanking, setPlayersRanking,
+            round, setRound,
+            database, setDatabase
 
-        }), [user, setUser, userList, setList, score, setScore, bet, setBet, credit, setCredit, cardDeck, setCardDeck, cards, setCards,userCards,setUserCards,dealerCards,setDealerCards]
+
+        }),
+        [playerName, setPlayerName, userList, setList, allWins, setAllWins, allLooses, setAllLooses,
+            bet, setBet, credit, setCredit, cardDeck, setCardDeck, cards, setCards, userCards, setUserCards,
+            playersRanking, setPlayersRanking, dealerCards, setDealerCards, round, setRound, database, setDatabase
+        ]
     );
+
 
     useEffect(() => {
         getDeck();
+        setDatabase(db)
     }, []);
 
     const getDeck = () => {
@@ -49,29 +73,32 @@ function App() {
             .then((res) => {
                 setCardDeck({deck: res.data})
             })
-    }
+    };
 
     return (
-        <>
+        <Router>
             <div className={'container'}>
-                <Router>
-                    <Switch>
-                        <Route exact path='/'>
-                            <UserContext.Provider value={value}>
-                                <Main/>
-                            </UserContext.Provider>
-                        </Route>
-                        <Route path='/game'>
-                            <UserContext.Provider value={value}>
-                                <Game/>
-                            </UserContext.Provider>
-                        </Route>
-                    </Switch>
-                </Router>
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/game">Game</Link>
+                        </li>
+                        <li>
+                            <Link to="/ranking">Ranking</Link>
+                        </li>
+                    </ul>
+                </nav>
+                <UserContext.Provider value={value}>
+                    <Route path='/' exact component={Main}/>
+                    <Route path='/game' exact component={Game}/>
+                    <Route path='/ranking' exact component={Ranking}/>
+                </UserContext.Provider>
                 <Footer/>
             </div>
-
-        </>
+        </Router>
 
     );
 }

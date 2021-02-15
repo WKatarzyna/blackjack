@@ -1,0 +1,41 @@
+table,tbody {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #dddddd;
+    color: #e8e8e8;
+
+}
+
+th,td,tr {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    font-weight: 900;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-align:center;
+}
+
+
+
+tr {
+    height: 50px;
+    text-align:center;
+
+}
+
+
+.rankingDetails {
+    padding: 20px;
+    color: white;
+    background-color: #568771;
+    margin-top: 100px;
+    border-radius: 50px;
+}
+
+.rankingDetails > p {
+    display: inline;
+    font-size: 1.6em;
+    font-weight: 900;
+    text-shadow: 2px 2px #454545;
+}

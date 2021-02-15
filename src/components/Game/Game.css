@@ -1,0 +1,30 @@
+#game_board {
+    height: 100px;
+    text-align: center;
+}
+
+#game_details {
+    font-family: "Dancing Script", serif;
+    font-size: 1.6em;
+    padding: 10px;
+    text-transform: uppercase;
+    color: ghostwhite;
+    text-shadow: 2px 2px 2px black;
+}
+
+.game_cards {
+
+    margin-left: 10px;
+    margin-top: 50px;
+
+}
+#alert {
+    background:lightgrey;
+    padding:10px;
+    border-radius: 20px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
